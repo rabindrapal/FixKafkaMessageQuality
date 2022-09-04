@@ -67,18 +67,23 @@ messages in a Kafka topic.
    * Validate `myTimeStamp` field in each message and fix where required.
    * Load all messages after fix in `output_topic` topic.   
    
-  Execute below command to build and execute main python application in docekr container:
+  Execute below command to build and execute main python application in docker container:
 
-   a) Containerize application code, build docker image.
-      ```bash
-      docker build -t fix_kafka_message_quality:v0.0.1 .
-      ```
+a) Containerize application code, build docker image.
+
+
+```bash
+docker build -t fix_kafka_message_quality:v0.0.1 .
+```
+
+
+b) Run main python application as docker in same network as of kafka server's docker and let it run.
       
-   b) Run main python application as docker in same network as of kafka server's docker and let it run.
-   
-      ```bash
-      docker run -it --network=fixkafkamessagequality_default --name FixMessageQualityApp fix_kafka_message_quality:v0.0.1
-      ```
+      
+```bash
+docker run -it --network=fixkafkamessagequality_default --name FixMessageQualityApp fix_kafka_message_quality:v0.0.1
+```
+
 
 5. Verify output and input messages on different command line terminal window. Open 2 new shell to validate the expected implementation.
 
