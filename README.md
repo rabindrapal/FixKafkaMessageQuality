@@ -66,36 +66,39 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
     
 Execute below command to build and execute main pipeline:
    a) Containerize application code, build docker image
-```bash
-       docker build -t fix_kafka_message_quality:v0.0.1 .
-  ```
+      ```bash
+      docker build -t fix_kafka_message_quality:v0.0.1 .
+        ```
    b) Execute main python application as docker in same network as of kafka server's docker and let it execute.
-```bash
+      ```bash
       docker run -it --network=fixkafkamessagequality_default --name FixMessageQualityApp fix_kafka_message_quality:v0.0.1
-```
+      ```
 
 5. Verify output and input messages using different command line terminal.
 
    a) Read message from input topic `input_topic`
-  ```bash
-   docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic input_topic --from-beginning
-  ```
-  
-   b) Read message from output topic `output_topic`
+   
     ```bash
-   docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic output_topic --from-beginning
-  ```
+    docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic input_topic --from-beginning
+      ```
+   b) Read message from output topic `output_topic`
+   
+      ```bash
+      docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic output_topic --from-beginning
+      ```
    
 6. Stop Application : Execute the below command to shut down services
     a) Stop main application
-```bash
-     docker stop FixMessageQualityApp
-```
+    
+    ```bash
+    docker stop FixMessageQualityApp
+    ```
 
  b) Stop kafka services:
-```bash
-docker compose down
-```
+
+     ```bash
+    docker compose down
+    ```
 
 
 ### Checklist of tasks covered during implementation of this assignment:
