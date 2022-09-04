@@ -27,13 +27,16 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
 1. Setup application code on local 
    
    a) One command line and clone git repository for this application
+   
       ```bash
       git clone https://github.com/rabindrapal/FixKafkaMessageQuality.git
        ```
+       
   b) Set current working directory to base path of this application "FixKafkaMessageQuality".
-    ```bash
-    cd  <your-local-path>/FixKafkaMessageQuality
-    ```
+  
+     ```bash
+     cd  <Change-this-with-your-local-path>/FixKafkaMessageQuality
+     ```
 
 2. Start kafka cluster :
   Execute the below command from base directory of this application ./FixKafkaMessageQuality
@@ -43,6 +46,7 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
 3. Create required kafka topics: 
    
    a) Execute the below command to create input topic.
+   
    ```bash
    docker exec broker \
    kafka-topics --bootstrap-server broker:9092 \
@@ -51,6 +55,7 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
              -- partitions 1
    ```
    b) Execute the below command to create output topic:
+   
     ```bash
    docker exec broker \
    kafka-topics --bootstrap-server broker:9092 \
@@ -62,14 +67,16 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
 4. Start Application: Main pipeline implements the following tasks:
    * Load required input messages from `../data/input_message.json` in `input_topic` topic. 
    * Validate `myTimeStamp` field in each message and fix where required.
-   * Load all messages after fix in `output_topic` topic. 
-    
-Execute below command to build and execute main pipeline:
+   * Load all messages after fix in `output_topic` topic.   
+  Execute below command to build and execute main pipeline:
+
    a) Containerize application code, build docker image
       ```bash
       docker build -t fix_kafka_message_quality:v0.0.1 .
-        ```
+      ```
+      
    b) Execute main python application as docker in same network as of kafka server's docker and let it execute.
+   
       ```bash
       docker run -it --network=fixkafkamessagequality_default --name FixMessageQualityApp fix_kafka_message_quality:v0.0.1
       ```
@@ -93,13 +100,10 @@ Execute below command to build and execute main pipeline:
     ```bash
     docker stop FixMessageQualityApp
     ```
-
  b) Stop kafka services:
-
-     ```bash
+    ```bash
     docker compose down
     ```
-
 
 ### Checklist of tasks covered during implementation of this assignment:
 
