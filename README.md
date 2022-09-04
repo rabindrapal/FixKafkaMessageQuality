@@ -27,13 +27,13 @@ Steps to configure environment and execution of the **FixKafkaMessageQuality** a
 1. Setup application code on local 
    
    a) One command line and clone git repository for this application
-```bash
-   git clone https://github.com/rabindrapal/FixKafkaMessageQuality.git
- ```
+      ```bash
+      git clone https://github.com/rabindrapal/FixKafkaMessageQuality.git
+       ```
   b) Set current working directory to base path of this application "FixKafkaMessageQuality".
-```bash
-        cd  <your-local-path>/FixKafkaMessageQuality
-```
+    ```bash
+    cd  <your-local-path>/FixKafkaMessageQuality
+    ```
 
 2. Start kafka cluster :
   Execute the below command from base directory of this application ./FixKafkaMessageQuality
@@ -69,13 +69,24 @@ Execute below command to build and execute main pipeline:
 ```bash
        docker build -t fix_kafka_message_quality:v0.0.1 .
   ```
-   b) Execute main python application as docker in same network as of kafka server's docker
+   b) Execute main python application as docker in same network as of kafka server's docker and let it execute.
 ```bash
       docker run -it --network=fixkafkamessagequality_default --name FixMessageQualityApp fix_kafka_message_quality:v0.0.1
 ```
 
+5. Verify output and input messages using different command line terminal.
+
+   a) Read message from input topic `input_topic`
+  ```bash
+   docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic input_topic --from-beginning
+  ```
+  
+   b) Read message from output topic `output_topic`
+    ```bash
+   docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092  --topic output_topic --from-beginning
+  ```
    
-5. Stop Application : Execute the below command to shut down services
+6. Stop Application : Execute the below command to shut down services
     a) Stop main application
 ```bash
      docker stop FixMessageQualityApp
@@ -85,7 +96,6 @@ Execute below command to build and execute main pipeline:
 ```bash
 docker compose down
 ```
-
 
 
 ### Checklist of tasks covered during implementation of this assignment:
