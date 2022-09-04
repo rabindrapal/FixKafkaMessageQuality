@@ -1,0 +1,5 @@
+INPUT_TOPIC_NAME = "input_topic"
+OUTPUT_TOPIC_NAME = "output_topic"
+EXPECTED_DATE_FORMAT = "%Y-%m-%dT%H:%M:%S%z"
+INPUT_FILE_NAME ="/app/data/input_message.json"
+KAFKA_BROKER = "broker:29092"
