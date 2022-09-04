@@ -25,11 +25,12 @@ messages in a Kafka topic.
 Steps to configure environment and execution of the **FixKafkaMessageQuality** application:
 
 1. Setup application code on local 
+   
    a) One command line and clone git repository for this application
 ```bash
    git clone https://github.com/rabindrapal/FixKafkaMessageQuality.git
  ```
-b) Set current working directory to base path of this application "FixKafkaMessageQuality".
+  b) Set current working directory to base path of this application "FixKafkaMessageQuality".
 ```bash
         cd  <your-local-path>/FixKafkaMessageQuality
 ```
